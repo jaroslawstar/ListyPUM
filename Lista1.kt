@@ -3,6 +3,7 @@
 //play.kotlinlang.org nie pozwala na wprowadzenie wartości do terminala,
 //odpowiednie linijki kodu zostały zakomentowane
 
+import kotlin.math.pow
 
 fun main() {
     val poem = """
@@ -50,7 +51,7 @@ fun main() {
     //----------Zadanie_5----------
     print("Podaj liczbę: ")
     //val number5 = readLine()?.toIntOrNull()
-    val number5 = 345
+    val number5 = 153
     if (number5 == null || number5 < 0) {
         println("Podano niepoprawną liczbę.")
         return
@@ -75,21 +76,21 @@ fun zad1(argument: Int): Int{
                 if ((x % 7) == 0){
                     if ((x % 11) == 0){
                         if ((x % 13) == 0){
-                        	println("TrzyPięćSiedemJedynaścieTrzynaście")
-                    	}
-                    	else{
+                            println("TrzyPięćSiedemJedynaścieTrzynaście")
+                        }
+                        else{
                             println("TrzyPięćSiedemJedynaście")
                         }
                     }
                     else{
-                    	println("TrzyPięćSiedem")
-                	}
+                        println("TrzyPięćSiedem")
+                    }
                 }
                 else{
-            		println("TrzyPięć")
+                    println("TrzyPięć")
                 }
-        	}
-        	else{
+            }
+            else{
                 println("Trzy")
             }
         }
@@ -97,38 +98,38 @@ fun zad1(argument: Int): Int{
                 if ((x % 7) == 0){
                     if ((x % 11) == 0){
                         if ((x % 13) == 0){
-                        	println("PięćSiedemJedynaścieTrzynaście")
-                    	}
-                    	else{
+                            println("PięćSiedemJedynaścieTrzynaście")
+                        }
+                        else{
                             println("PięćSiedemJedynaście")
                         }
                     }
                     else{
-                    	println("PięćSiedem")
-                	}
+                        println("PięćSiedem")
+                    }
                 }
                 else{
-            		println("Pięć")
+                    println("Pięć")
                 }
         }
         else if ((x % 7) == 0){
                     if ((x % 11) == 0){
                         if ((x % 13) == 0){
-                        	println("SiedemJedynaścieTrzynaście")
-                    	}
-                    	else{
+                            println("SiedemJedynaścieTrzynaście")
+                        }
+                        else{
                             println("SiedemJedynaście")
                         }
                     }
                     else{
-                    	println("Siedem")
-                	}
+                        println("Siedem")
+                    }
                 }
         else if ((x % 11) == 0){
                         if ((x % 13) == 0){
-                        	println("JedynaścieTrzynaście")
-                    	}
-                    	else{
+                            println("JedynaścieTrzynaście")
+                        }
+                        else{
                             println("Jedynaście")
                         }
                     }
@@ -192,6 +193,14 @@ fun classifyNumber(n: Int): String {
 fun isArmstrongNumber(n: Int): Boolean {
     val digits = n.toString().map { it.digitToInt() }
     val power = digits.size
-    val sum = digits.sumOf { it.toDouble().pow(power).toInt() }
+
+    var sum = 0
+    for (digit in digits) {
+        val double = digit.toDouble()
+        val raised = double.pow(power) // Podniesienie cyfry do potęgi
+        val rounded = raised.toInt() // Konwersja wyniku na liczbę całkowitą
+        sum += rounded // Dodanie do sumy
+    }
+
     return sum == n
 }
